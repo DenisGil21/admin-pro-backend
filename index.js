@@ -14,14 +14,13 @@ dbConnection();
 //Configurar CORS
 app.use(cors());
 
+//Lectura y parseo del body
+app.use(express.json());
+
 
 //rutas
-app.get('/', (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'hola mundo'
-    })
-});
+app.use('/api/usuarios', require('./routes/usuarios'))
+app.use('/api/login', require('./routes/auth'))
 
 
 app.listen(process.env.PORT, () => {
